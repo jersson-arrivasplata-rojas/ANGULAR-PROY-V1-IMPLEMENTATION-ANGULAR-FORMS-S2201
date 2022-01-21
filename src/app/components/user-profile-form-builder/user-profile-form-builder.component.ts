@@ -9,31 +9,18 @@ import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 })
 export class UserProfileFormBuilderComponent implements OnInit {
 
-  userProfileJson: IUserProfile = {
-    firstName: 'Jersson',
-    lastName: 'Arrivasplata',
-    phones: ['987347691'],
-    address: {
-      country: 'Perú',
-      city: 'Lima',
-      state: 'Cercado de Lima',
-      street: 'Jr. Zorritos 1134',
-      zip: '15082'
-    }
-  };
-
   userProfileForm: FormGroup = this.fb.group({
-    firstName: this.userProfileJson.firstName,
-    lastName: this.userProfileJson.lastName,
+    firstName: '',
+    lastName: '',
     phones: this.fb.array([
-      this.fb.control(this.userProfileJson.phones.pop())
+      this.fb.control('')
     ]),
     address: this.fb.group({
-      country: this.fb.control(this.userProfileJson.address.country),
-      city: this.fb.control(this.userProfileJson.address.city),
-      state: this.fb.control(this.userProfileJson.address.state),
-      street: this.fb.control(this.userProfileJson.address.street),
-      zip: this.fb.control(this.userProfileJson.address.zip)
+      country: this.fb.control(''),
+      city: this.fb.control(''),
+      state: this.fb.control(''),
+      street: this.fb.control(''),
+      zip: this.fb.control('')
     })
   });
 
@@ -61,5 +48,26 @@ export class UserProfileFormBuilderComponent implements OnInit {
 
   get address() {
     return this.userProfileForm.controls['address'] as FormGroup;
+  }
+
+  setProfileValues() {
+
+    const userProfileJson: IUserProfile = {
+      firstName: 'Jersson',
+      lastName: 'Arrivasplata',
+      phones: ['987347691'],
+      address: {
+        country: 'Perú',
+        city: 'Lima',
+        state: 'Cercado de Lima',
+        street: 'Jr. Zorritos 1134'
+      }
+    };
+
+    this.userProfileForm.patchValue(userProfileJson);
+  }
+
+  clear(){
+    this.userProfileForm.reset();
   }
 }

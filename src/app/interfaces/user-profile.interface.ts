@@ -7,6 +7,6 @@ export interface IUserProfile {
     city: string;
     state: string;
     street: string;
-    zip: string;
+    zip?: string;
   }
 }

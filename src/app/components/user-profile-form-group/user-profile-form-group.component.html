@@ -1,5 +1,6 @@
 
 <form (ngSubmit)="onSubmit()" [formGroup]="userProfileForm">
+  <h2>Formulario - Form Group</h2>
   <div class="form-group">
     <label for="firstName">Nombre</label>
     <input type="text" formControlName="firstName" required>
@@ -88,5 +89,9 @@
     <button type="submit" class="btn btn-default"
       [disabled]="!userProfileForm.valid">
       Guardar</button>
+  </div>
+  <div class="button-group mt-1">
+    <button (click)="setProfileValues()" class="btn btn-default">Rellenar Campos (SetValue)</button>
+    <button (click)="clear()" class="btn btn-default">Limpiar Campos</button>
   </div>
 </form>
