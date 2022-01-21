@@ -1,5 +1,6 @@
+import { IUserProfile } from './../../interfaces/user-profile.interface';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 
 @Component({
   selector: 'app-user-profile-form-builder',
@@ -8,13 +9,32 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class UserProfileFormBuilderComponent implements OnInit {
 
-  userProfileForm: FormGroup = this.fb.group({
+  userProfileJson: IUserProfile = {
     firstName: 'Jersson',
     lastName: 'Arrivasplata',
+    phones: ['987347691'],
+    address: {
+      country: 'Perú',
+      city: 'Lima',
+      state: 'Cercado de Lima',
+      street: 'Jr. Zorritos 1134',
+      zip: '15082'
+    }
+  };
+
+  userProfileForm: FormGroup = this.fb.group({
+    firstName: this.userProfileJson.firstName,
+    lastName: this.userProfileJson.lastName,
     phones: this.fb.array([
-      this.fb.control('')
+      this.fb.control(this.userProfileJson.phones.pop())
     ]),
-    address: 'Jr. Zorritos 1134 - Cercado de Lima'
+    address: this.fb.group({
+      country: this.fb.control(this.userProfileJson.address.country),
+      city: this.fb.control(this.userProfileJson.address.city),
+      state: this.fb.control(this.userProfileJson.address.state),
+      street: this.fb.control(this.userProfileJson.address.street),
+      zip: this.fb.control(this.userProfileJson.address.zip)
+    })
   });
 
   constructor(private fb: FormBuilder) {
@@ -23,8 +43,23 @@ export class UserProfileFormBuilderComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSubmit(){
+  onSubmit() {
     console.warn(this.userProfileForm.value);
   }
 
+  addPhone() {
+    (this.userProfileForm.controls['phones'] as FormArray).push(this.fb.control(''));
+  }
+
+  removePhone(pos: number) {
+    (this.userProfileForm.controls['phones'] as FormArray).removeAt(pos);
+  }
+
+  get phones() {
+    return this.userProfileForm.controls['phones'] as FormArray;
+  }
+
+  get address() {
+    return this.userProfileForm.controls['address'] as FormGroup;
+  }
 }
