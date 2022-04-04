@@ -3,20 +3,20 @@
   <h2>Formulario - Form Builder</h2>
   <div class="form-group">
     <label for="firstName">Nombre</label>
-    <input type="text" formControlName="firstName" required>
+    <input type="text" formControlName="firstName" class="form-control" required>
   </div>
   <div class="form-group">
     <label for="lastName">Apellido</label>
-    <input type="text" formControlName="lastName" required>
+    <input type="text" formControlName="lastName" class="form-control"  required>
   </div>
   <div formArrayName="phones">
     <h2>Números de Contacto</h2>
-    <button (click)="addPhone()">+ Agregar Otro Número</button>
+    <button (click)="addPhone()" class="btn btn-secondary">+ Agregar Otro Número</button>
     <div class="form-group mt-1" *ngFor="let phone of phones.controls; let
       i=index">
       <label for="phone-{{ i }}">Número:</label>
-      <input id="phone-{{ i }}" type="text" [formControlName]="i" required>
-      <button (click)="removePhone(i)">x</button>
+      <input id="phone-{{ i }}" type="text"  class="form-control"  [formControlName]="i" required>
+      <button  class="btn btn-danger mt-1" (click)="removePhone(i)">x</button>
     </div>
   </div>
   <div formGroupName="address">
@@ -24,74 +24,74 @@
 
     <div class="form-group">
       <label for="country">Pais: </label>
-      <input id="country" type="text" formControlName="country" required>
+      <input id="country" type="text" class="form-control"  formControlName="country" required>
     </div>
     <div class="form-group">
       <label for="city">Ciudad: </label>
-      <input id="city" type="text" formControlName="city" required>
+      <input id="city" type="text"  class="form-control" formControlName="city" required>
     </div>
     <div class="form-group">
       <label for="state">Provincia: </label>
-      <input id="state" type="text" formControlName="state" required>
+      <input id="state" type="text"  class="form-control"  formControlName="state" required>
     </div>
     <div class="form-group">
       <label for="street">Ubicación: </label>
-      <input id="street" type="text" formControlName="street" required>
+      <input id="street" type="text"  class="form-control"  formControlName="street" required>
     </div>
     <div class="form-group">
       <label for="zip">Zip Code: </label>
-      <input id="zip" type="text" formControlName="zip" required>
+      <input id="zip" type="text"  class="form-control"  formControlName="zip" required>
     </div>
   </div>
   <div class="form-group">
     <div *ngIf="!userProfileForm.controls['firstName'].valid &&
       (userProfileForm.controls['firstName'].dirty ||
-      userProfileForm.controls['firstName'].touched)" class="alert">
+      userProfileForm.controls['firstName'].touched)" class="alert alert-warning">
       * Nombre se requiere
     </div>
     <div *ngIf="!userProfileForm.controls['lastName'].valid &&
       (userProfileForm.controls['lastName'].dirty ||
-      userProfileForm.controls['lastName'].touched)" class="alert">
+      userProfileForm.controls['lastName'].touched)" class="alert alert-warning">
       * Apellido se requiere
     </div>
     <div *ngIf="!userProfileForm.controls['phones'].valid &&
       (userProfileForm.controls['phones'].dirty ||
-      userProfileForm.controls['phones'].touched)" class="alert">
+      userProfileForm.controls['phones'].touched)" class="alert alert-warning">
       * Contacto se requiere
     </div>
     <div *ngIf="!address.controls['country'].valid &&
       (address.controls['country'].dirty ||
-      address.controls['country'].touched)" class="alert">
+      address.controls['country'].touched)" class="alert alert-warning">
       * Pais se requiere
     </div>
     <div *ngIf="!address.controls['city'].valid &&
       (address.controls['city'].dirty ||
-      address.controls['city'].touched)" class="alert">
+      address.controls['city'].touched)" class="alert alert-warning">
       * Ciudad se requiere
     </div>
     <div *ngIf="!address.controls['state'].valid &&
       (address.controls['state'].dirty ||
-      address.controls['state'].touched)" class="alert">
+      address.controls['state'].touched)" class="alert alert-warning">
       * Departamento se requiere
     </div>
     <div *ngIf="!address.controls['street'].valid &&
       (address.controls['street'].dirty ||
-      address.controls['street'].touched)" class="alert">
+      address.controls['street'].touched)" class="alert alert-warning">
       * Calle se requiere
     </div>
     <div *ngIf="!address.controls['zip'].valid &&
       (address.controls['zip'].dirty ||
-      address.controls['zip'].touched)" class="alert">
+      address.controls['zip'].touched)" class="alert alert-warning">
       * Zip se requiere
     </div>
   </div>
   <div class="button-group">
-    <button type="submit" class="btn btn-default"
+    <button type="submit" class="btn btn-success"
       [disabled]="!userProfileForm.valid">
       Guardar</button>
   </div>
-  <div class="button-group mt-1">
-    <button (click)="setProfileValues()" class="btn btn-default">Rellenar Campos (Patch Value)</button>
-    <button (click)="clear()" class="btn btn-default">Limpiar Campos</button>
+  <div class="button-group mt-1 mb-4">
+    <button (click)="setProfileValues()" class="btn btn-primary me-2">Rellenar Campos (Patch Value)</button>
+    <button (click)="clear()" class="btn btn-danger">Limpiar Campos</button>
   </div>
 </form>

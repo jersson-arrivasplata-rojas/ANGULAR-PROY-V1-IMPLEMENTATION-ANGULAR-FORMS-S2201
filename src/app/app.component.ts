@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-root',
+  selector: 'angular-proy-v1-implementation-angular-forms-s2201',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })

@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { UserProfileFormGroupComponent } from './components/user-profile-form-group/user-profile-form-group.component';
 import { UserProfileFormBuilderComponent } from './components/user-profile-form-builder/user-profile-form-builder.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+import { APP_BASE_HREF, CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -21,7 +21,7 @@ import { CommonModule } from '@angular/common';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [{provide: APP_BASE_HREF, useValue: '/'}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
